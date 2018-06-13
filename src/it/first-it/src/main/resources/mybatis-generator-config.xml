@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="default" targetRuntime="MyBatis3DynamicSQL">
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <commentGenerator>
+            <!--<property name="suppressDate" value="true"/>-->
+            <!-- 是否压制注释，即生成代码时是否添加注释 -->
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+
+        <!--  model的生成 -->
+        <javaModelGenerator targetPackage="io.github.elliotmok.entity.mbg"
+                            targetProject="src/main/java">
+            <!-- 是否允许生成子包 -->
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--  Mapper XML 的生成 -->
+        <sqlMapGenerator targetPackage="mapper.mbg"
+                         targetProject="src/main/resources/mapper">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- dao的生成 -->
+        <javaClientGenerator targetPackage="io.github.elliotmok.mapper.mbg"
+                             targetProject="src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+
+        <!-- 指定要生成代码的表 -->
+        <!-- tableName：数据库表名，允许使用SQL通配符；
+             enableXXX:指定是否生成XX操作的代码，默认值为true。XXXExample指提供对该表的更多如条件相关的查询方法的类的生成 -->
+        <table tableName="%"
+               enableInsert="true"
+               enableSelectByPrimaryKey="true" enableSelectByExample="true"
+               enableUpdateByPrimaryKey="true" enableUpdateByExample="true"
+               enableDeleteByPrimaryKey="true" enableDeleteByExample="true"
+               enableCountByExample="true">
+        </table>
+
+    </context>
+
+</generatorConfiguration>
